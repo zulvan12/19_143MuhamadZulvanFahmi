@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -316,25 +318,116 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Topic Modelling using LSA
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#crawling-data">
-   # Crawling Data
+   Crawling Data
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-library">
+     Install Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-library">
+     Import Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proses-crawling">
+     Proses Crawling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#menyimpan-data-hasil-crawling">
+     Menyimpan data hasil crawling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-lengkap-crawling-data">
+     Code Lengkap Crawling Data
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preprocessing">
-   # Preprocessing
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   Pre-Processing
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Install Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Import Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-dataset">
+     Load Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Pre-Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#menyimpan-data-hasil-pre-processing">
+     Menyimpan data hasil Pre-Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-lengkap-pre-processing">
+     Code lengkap Pre-Processing
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lsa">
-   # LSA
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permodelan-dengan-lsa">
+   Permodelan dengan LSA
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Install Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Import Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Load Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extracting-feature-dan-membuat-document-term-matrix-dtm">
+     Extracting Feature dan Membuat Document Term-Matrix (DTM)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#document-term-matrix-dtm">
+     Document Term Matrix (DTM)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#latent-semantic-analysis-lsa">
+     Latent Semantic Analysis (LSA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hasil">
+     Hasil
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -355,25 +448,116 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Topic Modelling using LSA
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#crawling-data">
-   # Crawling Data
+   Crawling Data
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-library">
+     Install Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-library">
+     Import Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proses-crawling">
+     Proses Crawling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#menyimpan-data-hasil-crawling">
+     Menyimpan data hasil crawling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-lengkap-crawling-data">
+     Code Lengkap Crawling Data
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preprocessing">
-   # Preprocessing
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   Pre-Processing
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Install Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Import Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-dataset">
+     Load Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Pre-Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#menyimpan-data-hasil-pre-processing">
+     Menyimpan data hasil Pre-Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-lengkap-pre-processing">
+     Code lengkap Pre-Processing
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lsa">
-   # LSA
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permodelan-dengan-lsa">
+   Permodelan dengan LSA
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Install Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Import Library
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Load Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extracting-feature-dan-membuat-document-term-matrix-dtm">
+     Extracting Feature dan Membuat Document Term-Matrix (DTM)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#document-term-matrix-dtm">
+     Document Term Matrix (DTM)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#latent-semantic-analysis-lsa">
+     Latent Semantic Analysis (LSA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hasil">
+     Hasil
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -389,25 +573,154 @@ title="Print to PDF"
 <h1>Topic Modelling using LSA<a class="headerlink" href="#topic-modelling-using-lsa" title="Permalink to this headline">#</a></h1>
 <p>Algoritma LSA (Latent Semantic Analysis) adalah salah satu algoritma yang dapat digunakan untuk menganalisa hubungan antara sebuah frase/kalimat dengan sekumpulan dokumen.</p>
 <p>Pada program ini akan menggunakan data abstrak dari portal tugas akhir trunojoyo program studi Teknik Informatika (<a class="reference external" href="https://pta.trunojoyo.ac.id/c_search/byprod/10">https://pta.trunojoyo.ac.id/c_search/byprod/10</a>), berikut code untuk melakukan crawling data:</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="crawling-data">
-<h1># Crawling Data<a class="headerlink" href="#crawling-data" title="Permalink to this headline">#</a></h1>
+<section id="crawling-data">
+<h2>Crawling Data<a class="headerlink" href="#crawling-data" title="Permalink to this headline">#</a></h2>
+<p>Proses pertama yaitu pengambilan data abstrak dari portal tugas akhir menggunakan teknik crawling. Crawling merupakan teknik mengumpulkan data pada sebuah website dengan memasukkan Uniform Resource Locator (URL).</p>
+<section id="install-library">
+<h3>Install Library<a class="headerlink" href="#install-library" title="Permalink to this headline">#</a></h3>
+<p>Library yang digunakan adalah beautifulsoap4, jalankan perintah berikut untuk proses instalasi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># install library beautifulsoup4 untuk melakukan crawling data</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">beautifulsoup4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">beautifulsoup4</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">pip</span> <span class="n">install</span> <span class="n">beautifulsoup4</span>
-        <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: beautifulsoup4 in c:\users\lenovo-pc\appdata\local\programs\python\python310\lib\site-packages (4.11.1)
+Requirement already satisfied: soupsieve&gt;1.2 in c:\users\lenovo-pc\appdata\local\programs\python\python310\lib\site-packages (from beautifulsoup4) (2.3.2.post1)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: You are using pip version 21.2.4; however, version 22.1.2 is available.
+You should consider upgrading via the &#39;C:\Users\lenovo-pc\AppData\Local\Programs\Python\Python310\python.exe -m pip install --upgrade pip&#39; command.
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="import-library">
+<h3>Import Library<a class="headerlink" href="#import-library" title="Permalink to this headline">#</a></h3>
+<p>Selanjutnya import library yang digunakan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import library</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="proses-crawling">
+<h3>Proses Crawling<a class="headerlink" href="#proses-crawling" title="Permalink to this headline">#</a></h3>
+<p>Membuat function crawlAbstract, untuk mengambil data judul dan abstrak</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">crawlAbstract</span><span class="p">(</span><span class="n">src</span><span class="p">):</span>
+    <span class="c1"># inisialisasi beautifulsoup4     </span>
+    <span class="k">global</span> <span class="n">c</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># mengambil data judul     </span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    
+    <span class="c1"># mengambil data abstract     </span>
+    <span class="n">abstractText</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">abstractText</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lalu function getLinkToAbstract berguna untuk mengambil link dari daftar jurnal menuju halaman detail abstrak, function ini akan langsung memanggil crawlAbstract().</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getLinkToAbstract</span><span class="p">(</span><span class="n">src</span><span class="p">):</span>
+    <span class="c1"># inisialisasi beautifulsoup4</span>
+    <span class="k">global</span> <span class="n">c</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># mendapatkan semua link menuju halaman detail</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="s2">&quot;items&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="c1"># looping setiap link untuk mendapatkan nilai href, </span>
+    <span class="c1"># link tersebut digunakan sebagai parameter function crawlAbstract agar mendapat data judul dan abstract</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">crawlAbstract</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">))</span>
+            <span class="c1"># dataAbstract menampung data sementara hasil crawl</span>
+            <span class="n">dataAbstract</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Selanjutnya code untuk pemanggilan function, akan dilakukan looping untuk mengurutkan halaman daftar jurnal dari page 1 sampai 100, setiap iterasi akan mengambil link menuju halaman detail abstrak (melalui function getLinkToAbstract()).
+Looping selanjutnya bertujuan untuk menambahkan id di setiap abstrak hasil crawling</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># link = &quot;https://pta.trunojoyo.ac.id/c_search/byprod/10&quot;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">):</span>
+    <span class="c1"># memindah halaman menuju halaman selanjutnya     </span>
+    <span class="n">src</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/10/</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="c1"># counter untuk melihat progress berapa persen proses crawling</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Proses-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="c1"># memanggil function getLinkToAbstract untuk mendapatkan setiap link ke halaman detail</span>
+    <span class="n">getLinkToAbstract</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+
+<span class="c1"># menambahkan id  di setiap abstrak</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataAbstract</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">dataAbstract</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">dataFix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataAbstract</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proses-1%
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Proses-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="c1"># memanggil function getLinkToAbstract untuk mendapatkan setiap link ke halaman detail</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">getLinkToAbstract</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="c1"># menambahkan id  di setiap abstrak</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataAbstract</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+
+<span class="nn">Input In [4],</span> in <span class="ni">getLinkToAbstract</span><span class="nt">(src)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">crawlAbstract</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># dataAbstract menampung data sementara hasil crawl</span>
+<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">dataAbstract</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;dataAbstract&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="menyimpan-data-hasil-crawling">
+<h3>Menyimpan data hasil crawling<a class="headerlink" href="#menyimpan-data-hasil-crawling" title="Permalink to this headline">#</a></h3>
+<p>Semua hasil abstrak akan disimpan format csv dengan nama file dataHasilCrawl.csv</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;abstract&#39;</span><span class="p">]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dataHasilCrawl.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">write</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">write</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">write</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">dataFix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-lengkap-crawling-data">
+<h3>Code Lengkap Crawling Data<a class="headerlink" href="#code-lengkap-crawling-data" title="Permalink to this headline">#</a></h3>
+<p>Berikut adalah code lengkap proses crawling data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import library</span>
@@ -478,7 +791,7 @@ title="Print to PDF"
 
 <span class="c1"># menyimpan data hasil crawl dengan format csv</span>
 <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;abstract&#39;</span><span class="p">]</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dataHasilCrawl.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dataHasilCrawl.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">write</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">write</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
     <span class="n">write</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">dataFix</span><span class="p">)</span>
@@ -489,16 +802,14 @@ title="Print to PDF"
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="preprocessing">
-<h1># Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">#</a></h1>
-<p>Tahap selanjutnya melakukan pre-processing data dengan tahapan 1.punctuation removal 2.stemming</p>
-<ol class="simple">
-<li><p>punctuation removal adalah proses membersihkan teks dari tanda baca dan angka</p></li>
-<li><p>Stemming adalah proses pemetaan dan penguraian bentuk dari suatu kata menjadi bentuk kata dasarnya. Sederhananya, proses mengubah kata berimbuhan menjadi kata dasar, misal kata “membosankan” menjadi “bosan”</p></li>
-<li><p>Stopwords merupakan kata yang diabaikan dalam pemrosesan karena termasuk kata umum yang mempunyai fungsi tapi tidak mempunyai arti.Maksud dari kata umum adalah kata yang frekuensi kemunculannya tinggi, misalnya kata penghubung seperti “dan”, “atau”, “tapi”, “akan” dan lainnya</p></li>
-</ol>
+</section>
+<section id="pre-processing">
+<h2>Pre-Processing<a class="headerlink" href="#pre-processing" title="Permalink to this headline">#</a></h2>
+<p>Tahap selanjutnya melakukan pre-processing data yang bertujuan agar kualitas data yang digunakan memiliki hasil yang baik dan konsisten. Pre-Processing yang akan dilakukan adalah Case Folding, Punctuation Removal, Stopwords</p>
+<section id="id1">
+<h3>Install Library<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Install terlebih dahulu library yang akan digunakan:
-Sastrawi digunakan untuk proses stemming dan stopword</p>
+Sastrawi digunakan untuk proses stopword</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sastrawi</span>
@@ -506,6 +817,118 @@ Sastrawi digunakan untuk proses stemming dan stopword</p>
 </div>
 </div>
 </div>
+</section>
+<section id="id2">
+<h3>Import Library<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Import library dan persiapan, library yang digunakan adalah sastrawi yang digunakan dalam proses stemming dan stopwords</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span> <span class="c1"># untuk menyimpan hasil dalam format csv</span>
+<span class="kn">import</span> <span class="nn">string</span> 
+<span class="kn">import</span> <span class="nn">re</span> <span class="c1"># re : digunakan untuk proses punctuation removal</span>
+
+<span class="c1"># memanggil function yang digunakan</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.StopWordRemover.StopWordRemoverFactory</span> <span class="kn">import</span> <span class="n">StopWordRemoverFactory</span>
+
+<span class="c1"># membuat list untuk menampung data</span>
+<span class="n">dataAbstract</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">dataAfterPreprocessing</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># inisialisasi library sastrawi untuk stemming</span>
+<span class="n">factory</span> <span class="o">=</span> <span class="n">StemmerFactory</span><span class="p">()</span>
+<span class="n">stemmer</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_stemmer</span><span class="p">()</span>
+
+<span class="c1"># inisialisasi library sastrawi untuk proses stopword removal</span>
+<span class="n">factory2</span> <span class="o">=</span> <span class="n">StopWordRemoverFactory</span><span class="p">()</span>
+<span class="n">stopword</span> <span class="o">=</span> <span class="n">factory2</span><span class="o">.</span><span class="n">create_stop_word_remover</span><span class="p">()</span>
+
+<span class="c1"># untuk counter proses</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-dataset">
+<h3>Load Dataset<a class="headerlink" href="#load-dataset" title="Permalink to this headline">#</a></h3>
+<p>Selanjutnya dilakukan proses data load dari file dataHasilCrawl.csv</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;dataHasilCrawl.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="c1">#           data sebelum proses disimpan pada list dataAbstract</span>
+            <span class="n">dataAbstract</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>Pre-Processing<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>Akan dilakukan pre-processing yang meliputi:</p>
+<ol class="simple">
+<li><p>Case Folding
+Case folding merupakan proses dalam text preprocessing yang dilakukan untuk menyeragamkan karakter pada data. Proses case folding adalah proses mengubah seluruh huruf menjadi huruf kecil. Pada proses ini karakter-karakter ‘A’-‘Z’ yang terdapat pada data diubah kedalam karakter ‘a’-‘z’</p></li>
+<li><p>Punctuation Removal
+Punctuation Removal adalah proses menghilangkan tanda baca, simbol, angka dan spasi yang tidak perlu dalam dataset.</p></li>
+<li><p>Stemming
+Stemming adalah proses pemetaan dan penguraian bentuk dari suatu kata menjadi bentuk kata dasarnya. Secara sederhana, proses mengubah kata berimbuhan menjadi kata dasar.</p></li>
+<li><p>Stopwords
+Stopwords adalah kata yang diabaikan dalam pemrosesan karena merupakan kata umum yang mempunyai fungsi tapi tidak mempunyai arti.</p></li>
+</ol>
+<p>Berikut adalah code untuk melakukan pre-processing data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">abstract</span> <span class="ow">in</span> <span class="n">dataAbstract</span><span class="p">:</span>
+<span class="c1">#   ambil data</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">abstract</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="c1">#   lakukan case folding (mengubah teks menjadi bentuk standar: huruf kecil)</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="c1">#   menghapus angka</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\d+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
+<span class="c1">#   menghapus tanda baca</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">))</span>
+<span class="c1">#   menghapus whitespace</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">tmp</span><span class="p">)</span>
+<span class="c1">#   melakukan proses stemming</span>
+<span class="c1">#     tmp = stemmer.stem(tmp)</span>
+<span class="c1">#   melakukan proses stopword removal</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">stopword</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+<span class="c1">#   menambahkan data ke list dataAfterPreprocessing</span>
+    <span class="n">abstract</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+    <span class="n">dataAfterPreprocessing</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">abstract</span><span class="p">)</span>
+<span class="c1">#   print counter proses</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Proses:</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dataAbstract</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="menyimpan-data-hasil-pre-processing">
+<h3>Menyimpan data hasil Pre-Processing<a class="headerlink" href="#menyimpan-data-hasil-pre-processing" title="Permalink to this headline">#</a></h3>
+<p>data hasil preprocessing disimpan dalam bentuk csv dengan nama file dataAfterPreprocessing.csv</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># menyimpan data dari list dataAfterPreprocessing ke bentuk csv</span>
+<span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;abstract_cleaned&#39;</span><span class="p">]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;dataAfterPreprocessing.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">write</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">write</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">write</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">dataAfterPreprocessing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-lengkap-pre-processing">
+<h3>Code lengkap Pre-Processing<a class="headerlink" href="#code-lengkap-pre-processing" title="Permalink to this headline">#</a></h3>
+<p>Berikut adalah code lengkap Pre-Processing</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span> <span class="c1"># untuk menyimpan hasil dalam format csv</span>
@@ -577,10 +1000,13 @@ Sastrawi digunakan untuk proses stemming dan stopword</p>
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="lsa">
-<h1># LSA<a class="headerlink" href="#lsa" title="Permalink to this headline">#</a></h1>
-<p>Masuk ke tahap penerapan LSA</p>
-<p>install library sklearn, pandas, matplotlib dan seaborn</p>
+</section>
+<section id="permodelan-dengan-lsa">
+<h2>Permodelan dengan LSA<a class="headerlink" href="#permodelan-dengan-lsa" title="Permalink to this headline">#</a></h2>
+<p>Masuk ke tahap penerapan Latent Semantic Analysis (LSA)</p>
+<section id="id4">
+<h3>Install Library<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>install library yang akan digunakan yaitu sklearn, pandas, matplotlib dan seaborn.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sklearn</span>
@@ -609,6 +1035,10 @@ Sastrawi digunakan untuk proses stemming dan stopword</p>
 </div>
 </div>
 </div>
+</section>
+<section id="id5">
+<h3>Import Library<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>Berikut adalah proses import library dan inisialisasi library sebelum digunakan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inisialisasi semua library yg digunakan</span>
@@ -637,18 +1067,22 @@ Sastrawi digunakan untuk proses stemming dan stopword</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>  <span class="c1">#stopwords</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from nltk.corpus import stopwords  #stopwords</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stop_words</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># stop_words=set(nltk.corpus.stopwords.words(&#39;indonesian&#39;))</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="id6">
+<h3>Load Dataset<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>Berikut adalah code untuk membaca data dari dataAfterPreprocessing.csv, karena yang digunakan hanya kolom abstrak, maka kolom id dan title dihapus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># membaca data</span>
@@ -717,6 +1151,7 @@ Sastrawi digunakan untuk proses stemming dan stopword</p>
 </table>
 </div></div></div>
 </div>
+<p>Menghapus kolom id dan title</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># menghapus data index dan title karena tidak digunakan</span>
@@ -726,6 +1161,7 @@ Sastrawi digunakan untuk proses stemming dan stopword</p>
 </div>
 </div>
 </div>
+<p>Data abstract siap digunakan</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># menampilkan 10 baris data</span>
@@ -800,76 +1236,67 @@ Sastrawi digunakan untuk proses stemming dan stopword</p>
 </table>
 </div></div></div>
 </div>
+</section>
+<section id="extracting-feature-dan-membuat-document-term-matrix-dtm">
+<h3>Extracting Feature dan Membuat Document Term-Matrix (DTM)<a class="headerlink" href="#extracting-feature-dan-membuat-document-term-matrix-dtm" title="Permalink to this headline">#</a></h3>
+<p>Nilai DTM menggunakan nilai TF-Idf.
+Beberapa poin penting yang perlu diperhatikan:</p>
+<ol class="simple">
+<li><p>LSA pada umumnya diimplementasikan dengan menggunakan nilai TF-Idf dan tidak dengan Count Vectorizer.</p></li>
+<li><p>Nilai parameter max_feature bergantung pada daya komputasi.</p></li>
+<li><p>Nilai default untuk min_df dan max_df agar program dapat bekerja dengan baik.</p></li>
+<li><p>Bisa menggunakan nilai ngram_range yang berbeda.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># menghitung tfidf</span>
 <span class="n">vect</span> <span class="o">=</span><span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="n">stop_words</span><span class="p">,</span><span class="n">max_features</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">vect_text</span><span class="o">=</span><span class="n">vect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;abstract_cleaned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># menampilkan hasil perhitungan tfidf</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">vect_text</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">vect_text</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">vect</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(500, 1000)
-  (0, 354)	0.1184936369291229
-  (0, 196)	0.13956580648376873
-  (0, 684)	0.1343875919276184
-  (0, 179)	0.12133616214140663
-  (0, 395)	0.13685884977996102
-  (0, 732)	0.09114832069093537
-  (0, 867)	0.10565655947056028
-  (0, 168)	0.11032302056697307
-  (0, 475)	0.09813888102756477
-  (0, 923)	0.3081480905267873
-  (0, 688)	0.09813888102756477
-  (0, 392)	0.1280499695101433
-  (0, 366)	0.13211425507553565
-  (0, 503)	0.06227680213408083
-  (0, 404)	0.12287175495399294
-  (0, 929)	0.1343875919276184
-  (0, 791)	0.24267232428281327
-  (0, 808)	0.13211425507553565
-  (0, 329)	0.09684767920074258
-  (0, 131)	0.14898423918366568
-  (0, 953)	0.11987935314799347
-  (0, 784)	0.047360434797127454
-  (0, 99)	0.11242780173976039
-  (0, 583)	0.08272067498544265
-  (0, 365)	0.13685884977996102
-  :	:
-  (499, 351)	0.06266569569742468
-  (499, 39)	0.0923587589179502
-  (499, 30)	0.20311354251553534
-  (499, 697)	0.05266064595121842
-  (499, 117)	0.0938974226708933
-  (499, 965)	0.08733535401212822
-  (499, 689)	0.12891129588582412
-  (499, 80)	0.03838775159920479
-  (499, 821)	0.033341983518634946
-  (499, 745)	0.07326991657592176
-  (499, 88)	0.07004309923827863
-  (499, 986)	0.09756800783423276
-  (499, 796)	0.0956756218728135
-  (499, 912)	0.19561296559779046
-  (499, 730)	0.058931914021214026
-  (499, 596)	0.07386147869391585
-  (499, 281)	0.05440941183601676
-  (499, 159)	0.057828573261397814
-  (499, 36)	0.1275545719269735
-  (499, 76)	0.15555037274153827
-  (499, 86)	0.07510399111638014
-  (499, 732)	0.0637201925837372
-  (499, 131)	0.0347174229898487
-  (499, 462)	0.20722310799032384
-  (499, 81)	0.0838055535362557
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sklearn.feature_extraction.text.TfidfVectorizer
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dapat dilihat pada hasilnya, kata yang sering muncul dan jarang muncul dalam abstrak yang ada dalam idf. Apabila hasil memiliki nilai yang kecil maka kata tersebut lebih umum digunakan dalam dokumen (abstrak PTA)</p>
+</section>
+<section id="document-term-matrix-dtm">
+<h3>Document Term Matrix (DTM)<a class="headerlink" href="#document-term-matrix-dtm" title="Permalink to this headline">#</a></h3>
+<p>Setiap baris mewakili sebuah kata yang unik, sedangkan setiap kolom mewakili konteks dari mana kata-kata tersebut diambil. Konteks yang dimaksud bisa berupa kalimat, paragraf, atau seluruh bagian dari teks.
+Berikut adalah term-document matrix:</p>
+<p><img alt="Term Document Matrix" src="_images/termDocumentMatrix.JPG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">vect_text</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># print(vect_text)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">vect_text</span><span class="p">)</span>
+<span class="n">vect_text</span> <span class="o">=</span> <span class="n">vect_text</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">vect_text</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000, 500)
+   0    1    2    3    4    5    6    7         8    9    ...  990  991  \
+0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.000000  0.0  ...  0.0  0.0   
+1  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.327224  0.0  ...  0.0  0.0   
+2  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.000000  0.0  ...  0.0  0.0   
+3  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.000000  0.0  ...  0.0  0.0   
+4  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.000000  0.0  ...  0.0  0.0   
+
+        992  993  994  995  996  997  998  999  
+0  0.000000  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
+1  0.000000  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
+2  0.392931  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
+3  0.000000  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
+4  0.000000  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
+
+[5 rows x 1000 columns]
 </pre></div>
 </div>
 </div>
@@ -896,6 +1323,18 @@ Sastrawi digunakan untuk proses stemming dan stopword</p>
 </div>
 </div>
 <p>Dapat dilihat kata paling sering digunakan adalah “hasil” sementara kata paling jarang digunakan adalah “telapak”</p>
+</section>
+<section id="latent-semantic-analysis-lsa">
+<h3>Latent Semantic Analysis (LSA)<a class="headerlink" href="#latent-semantic-analysis-lsa" title="Permalink to this headline">#</a></h3>
+<p>LSA pada dasarnya adalah dekomposisi dari nilai tunggal.
+Singular Value Decomposition (SVD) akan menguraikan DTM menjadi tiga matriks:</p>
+<p><span class="math notranslate nohighlight">\(A_{m n}=U_{m m} x S_{m n} x V_{n n}^{T}\)</span></p>
+<p>Matriks U = Pada matriks ini, baris mewakili vektor dokumen pada topik
+Matriks V = Baris pada matriks ini mewakili vektor istilah yang dinyatakan pada topik
+Matriks S = Matriks diagonal yang memiliki elemen-elemen diagonal sebagai nilai singular dari A</p>
+<p>Pada setiap baris dari matriks U (matriks istilah dari dokumen) merupakan representasi vektor yang ada dalam dokumen yang sesuai. Panjang vektor ini ialah jumlah topik yang diinginkan. Representasi dari vektor untuk suku yang ada dalam data dapat ditemui dalam matriks V.</p>
+<p>Jadi, SVD memberikan nilai vektor pada setiap dokumen dan juga istilah dalam data. Panjang dari setiap vektor adalah k. Vektor ini digunakan untuk menentukan kata dan dokumen serupa dalam metode kesamaan kosinus.</p>
+<p>Dapat digunakan fungsi truncastedSVD untuk mengimplementasikan LSA. Parameter n_components merupakan jumlah topik yang akan diekstrak. Model tersebut nantinya akan di fit dan ditransformasikan pada hasil yang diberikan oleh vectorizer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
@@ -983,6 +1422,10 @@ Topic  9  :  8.248596705601583
 </div>
 </div>
 </div>
+</section>
+<section id="hasil">
+<h3>Hasil<a class="headerlink" href="#hasil" title="Permalink to this headline">#</a></h3>
+<p>Berikut adalah 10 kata penting dalam setiap topik</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># most important words for each topic</span>
@@ -1032,6 +1475,8 @@ batik citra siswa warna pencarian sekolah tekstur isi game akademik
 </div>
 </div>
 </div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

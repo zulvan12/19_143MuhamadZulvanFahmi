@@ -17,14 +17,35 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# install library beautifulsoup4 untuk melakukan crawling data
-pip install beautifulsoup4
+# link = "https://pta.trunojoyo.ac.id/c_search/byprod/10"
+for i in range(1, 101):
+    # memindah halaman menuju halaman selanjutnya     
+    src = f"https://pta.trunojoyo.ac.id/c_search/byprod/10/{i}"
+    # counter untuk melihat progress berapa persen proses crawling
+    print(f"Proses-{i}%")
+    # memanggil function getLinkToAbstract untuk mendapatkan setiap link ke halaman detail
+    getLinkToAbstract(src)
+
+# menambahkan id  di setiap abstrak
+for i in range(1, len(dataAbstract)+1):
+    dataAbstract[i-1].insert(0, i)
+    dataFix.append(dataAbstract[i-1])
 ------------------
 
-[1;36m  Input [1;32mIn [1][1;36m[0m
-[1;33m    pip install beautifulsoup4[0m
-[1;37m        ^[0m
-[1;31mSyntaxError[0m[1;31m:[0m invalid syntax
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Input [1;32mIn [5][0m, in [0;36m<cell line: 2>[1;34m()[0m
+[0;32m      6[0m     [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mProses-[39m[38;5;132;01m{[39;00mi[38;5;132;01m}[39;00m[38;5;124m%[39m[38;5;124m"[39m)
+[0;32m      7[0m     [38;5;66;03m# memanggil function getLinkToAbstract untuk mendapatkan setiap link ke halaman detail[39;00m
+[1;32m----> 8[0m     [43mgetLinkToAbstract[49m[43m([49m[43msrc[49m[43m)[49m
+[0;32m     10[0m [38;5;66;03m# menambahkan id  di setiap abstrak[39;00m
+[0;32m     11[0m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;241m1[39m, [38;5;28mlen[39m(dataAbstract)[38;5;241m+[39m[38;5;241m1[39m):
 
-SyntaxError: invalid syntax (2879863384.py, line 2)
+Input [1;32mIn [4][0m, in [0;36mgetLinkToAbstract[1;34m(src)[0m
+[0;32m     13[0m tmp [38;5;241m=[39m crawlAbstract(item[38;5;241m.[39mget([38;5;124m'[39m[38;5;124mhref[39m[38;5;124m'[39m))
+[0;32m     14[0m [38;5;66;03m# dataAbstract menampung data sementara hasil crawl[39;00m
+[1;32m---> 15[0m [43mdataAbstract[49m[38;5;241m.[39mappend(tmp)
+
+[1;31mNameError[0m: name 'dataAbstract' is not defined
+NameError: name 'dataAbstract' is not defined
 
