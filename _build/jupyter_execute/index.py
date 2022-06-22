@@ -7,14 +7,113 @@
 
 # Pada program ini akan menggunakan data abstrak dari portal tugas akhir trunojoyo program studi Teknik Informatika (https://pta.trunojoyo.ac.id/c_search/byprod/10), berikut code untuk melakukan crawling data:
 
-# # # Crawling Data
+# ## Crawling Data
+
+# Proses pertama yaitu pengambilan data abstrak dari portal tugas akhir menggunakan teknik crawling. Crawling merupakan teknik mengumpulkan data pada sebuah website dengan memasukkan Uniform Resource Locator (URL).
+
+# ### Install Library
+# Library yang digunakan adalah beautifulsoap4, jalankan perintah berikut untuk proses instalasi.
 
 # In[1]:
 
 
-# install library beautifulsoup4 untuk melakukan crawling data
 pip install beautifulsoup4
 
+
+# ### Import Library
+# Selanjutnya import library yang digunakan.
+
+# In[2]:
+
+
+# import library
+from bs4 import BeautifulSoup
+import requests
+import csv
+
+
+# ### Proses Crawling
+# Membuat function crawlAbstract, untuk mengambil data judul dan abstrak
+
+# In[3]:
+
+
+def crawlAbstract(src):
+    # inisialisasi beautifulsoup4     
+    global c
+    tmp = []
+    page = requests.get(src)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    
+    # mengambil data judul     
+    title = soup.find(class_="title").getText()
+    tmp.append(title)
+    
+    # mengambil data abstract     
+    abstractText = soup.p.getText()
+    tmp.append(abstractText)
+    
+    return tmp
+
+
+# Lalu function getLinkToAbstract berguna untuk mengambil link dari daftar jurnal menuju halaman detail abstrak, function ini akan langsung memanggil crawlAbstract().
+
+# In[4]:
+
+
+def getLinkToAbstract(src):
+    # inisialisasi beautifulsoup4
+    global c
+    page = requests.get(src)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    
+    # mendapatkan semua link menuju halaman detail
+    items = soup.find(class_="items").find_all('a')
+    # looping setiap link untuk mendapatkan nilai href, 
+    # link tersebut digunakan sebagai parameter function crawlAbstract agar mendapat data judul dan abstract
+    for item in items:
+        if item.get('href') != '#':
+            tmp = crawlAbstract(item.get('href'))
+            # dataAbstract menampung data sementara hasil crawl
+            dataAbstract.append(tmp)
+
+
+# Selanjutnya code untuk pemanggilan function, akan dilakukan looping untuk mengurutkan halaman daftar jurnal dari page 1 sampai 100, setiap iterasi akan mengambil link menuju halaman detail abstrak (melalui function getLinkToAbstract()).
+# Looping selanjutnya bertujuan untuk menambahkan id di setiap abstrak hasil crawling
+
+# In[5]:
+
+
+# link = "https://pta.trunojoyo.ac.id/c_search/byprod/10"
+for i in range(1, 101):
+    # memindah halaman menuju halaman selanjutnya     
+    src = f"https://pta.trunojoyo.ac.id/c_search/byprod/10/{i}"
+    # counter untuk melihat progress berapa persen proses crawling
+    print(f"Proses-{i}%")
+    # memanggil function getLinkToAbstract untuk mendapatkan setiap link ke halaman detail
+    getLinkToAbstract(src)
+
+# menambahkan id  di setiap abstrak
+for i in range(1, len(dataAbstract)+1):
+    dataAbstract[i-1].insert(0, i)
+    dataFix.append(dataAbstract[i-1])
+
+
+# ### Menyimpan data hasil crawling
+# Semua hasil abstrak akan disimpan format csv dengan nama file dataHasilCrawl.csv
+
+# In[ ]:
+
+
+header = ['index', 'title','abstract']
+with open('dataHasilCrawl.csv', 'w', encoding="utf-8") as f:
+    write = csv.writer(f)
+    write.writerow(header)
+    write.writerows(dataFix)
+
+
+# ### Code Lengkap Crawling Data
+# Berikut adalah code lengkap proses crawling data:
 
 # In[ ]:
 
@@ -87,7 +186,7 @@ for i in range(1, len(dataAbstract)+1):
 
 # menyimpan data hasil crawl dengan format csv
 header = ['index', 'title','abstract']
-with open('dataHasilCrawl.csv', 'w') as f:
+with open('dataHasilCrawl.csv', 'w', encoding="utf-8") as f:
     write = csv.writer(f)
     write.writerow(header)
     write.writerows(dataFix)
@@ -95,21 +194,124 @@ with open('dataHasilCrawl.csv', 'w') as f:
 # proses crawling selesai
 
 
-# # # Preprocessing
+# ## Pre-Processing
 
-# Tahap selanjutnya melakukan pre-processing data dengan tahapan 1.punctuation removal 2.stemming
-# 1. punctuation removal adalah proses membersihkan teks dari tanda baca dan angka
-# 2. Stemming adalah proses pemetaan dan penguraian bentuk dari suatu kata menjadi bentuk kata dasarnya. Sederhananya, proses mengubah kata berimbuhan menjadi kata dasar, misal kata "membosankan" menjadi "bosan"
-# 3. Stopwords merupakan kata yang diabaikan dalam pemrosesan karena termasuk kata umum yang mempunyai fungsi tapi tidak mempunyai arti.Maksud dari kata umum adalah kata yang frekuensi kemunculannya tinggi, misalnya kata penghubung seperti “dan”, “atau”, “tapi”, “akan” dan lainnya
+# Tahap selanjutnya melakukan pre-processing data yang bertujuan agar kualitas data yang digunakan memiliki hasil yang baik dan konsisten. Pre-Processing yang akan dilakukan adalah Case Folding, Punctuation Removal, Stopwords
 
+# ### Install Library
 # Install terlebih dahulu library yang akan digunakan:
-# Sastrawi digunakan untuk proses stemming dan stopword
+# Sastrawi digunakan untuk proses stopword
 
 # In[ ]:
 
 
 pip install sastrawi
 
+
+# ### Import Library
+# Import library dan persiapan, library yang digunakan adalah sastrawi yang digunakan dalam proses stemming dan stopwords
+
+# In[ ]:
+
+
+import csv # untuk menyimpan hasil dalam format csv
+import string 
+import re # re : digunakan untuk proses punctuation removal
+
+# memanggil function yang digunakan
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+
+# membuat list untuk menampung data
+dataAbstract = []
+dataAfterPreprocessing = []
+
+# inisialisasi library sastrawi untuk stemming
+factory = StemmerFactory()
+stemmer = factory.create_stemmer()
+
+# inisialisasi library sastrawi untuk proses stopword removal
+factory2 = StopWordRemoverFactory()
+stopword = factory2.create_stop_word_remover()
+
+# untuk counter proses
+count = 1
+
+
+# ### Load Dataset
+# Selanjutnya dilakukan proses data load dari file dataHasilCrawl.csv
+
+# In[ ]:
+
+
+with open("dataHasilCrawl.csv", "r") as f:
+    reader = csv.reader(f)
+    next(reader, None)
+    for row in reader:
+        if len(row) != 0:
+#           data sebelum proses disimpan pada list dataAbstract
+            dataAbstract.append(row)
+
+
+# ### Pre-Processing
+# Akan dilakukan pre-processing yang meliputi:
+# 1. Case Folding
+# Case folding merupakan proses dalam text preprocessing yang dilakukan untuk menyeragamkan karakter pada data. Proses case folding adalah proses mengubah seluruh huruf menjadi huruf kecil. Pada proses ini karakter-karakter 'A'-'Z' yang terdapat pada data diubah kedalam karakter 'a'-'z'
+# 
+# 2. Punctuation Removal
+# Punctuation Removal adalah proses menghilangkan tanda baca, simbol, angka dan spasi yang tidak perlu dalam dataset.
+# 
+# 3. Stemming
+# Stemming adalah proses pemetaan dan penguraian bentuk dari suatu kata menjadi bentuk kata dasarnya. Secara sederhana, proses mengubah kata berimbuhan menjadi kata dasar.
+# 
+# 4. Stopwords
+# Stopwords adalah kata yang diabaikan dalam pemrosesan karena merupakan kata umum yang mempunyai fungsi tapi tidak mempunyai arti.
+# 
+# Berikut adalah code untuk melakukan pre-processing data:
+
+# In[ ]:
+
+
+for abstract in dataAbstract:
+#   ambil data
+    tmp = abstract.pop()
+#   lakukan case folding (mengubah teks menjadi bentuk standar: huruf kecil)
+    tmp = tmp.lower()
+#   menghapus angka
+    tmp = re.sub(r"\d+", "", tmp)
+#   menghapus tanda baca
+    tmp = tmp.translate(str.maketrans("","",string.punctuation))
+#   menghapus whitespace
+    tmp = tmp.strip()
+    tmp = re.sub('\s+',' ',tmp)
+#   melakukan proses stemming
+#     tmp = stemmer.stem(tmp)
+#   melakukan proses stopword removal
+    tmp = stopword.remove(tmp)
+#   menambahkan data ke list dataAfterPreprocessing
+    abstract.append(tmp)
+    dataAfterPreprocessing.append(abstract)
+#   print counter proses
+    print(f"Proses:{count}/{len(dataAbstract)}")
+    count+=1
+
+
+# ### Menyimpan data hasil Pre-Processing
+# data hasil preprocessing disimpan dalam bentuk csv dengan nama file dataAfterPreprocessing.csv
+
+# In[ ]:
+
+
+# menyimpan data dari list dataAfterPreprocessing ke bentuk csv
+header = ['index', 'title','abstract_cleaned']
+with open('dataAfterPreprocessing.csv', 'w', encoding="utf-8") as f:
+    write = csv.writer(f)
+    write.writerow(header)
+    write.writerows(dataAfterPreprocessing)
+
+
+# ### Code lengkap Pre-Processing
+# Berikut adalah code lengkap Pre-Processing
 
 # In[ ]:
 
@@ -180,11 +382,12 @@ with open('dataAfterPreprocessing.csv', 'w', encoding="utf-8") as f:
 # preprocessing sudah selesai
 
 
-# # # LSA
+# ## Permodelan dengan LSA
 
-# Masuk ke tahap penerapan LSA
+# Masuk ke tahap penerapan Latent Semantic Analysis (LSA)
 
-# install library sklearn, pandas, matplotlib dan seaborn
+# ### Install Library
+# install library yang akan digunakan yaitu sklearn, pandas, matplotlib dan seaborn.
 
 # In[ ]:
 
@@ -210,7 +413,10 @@ pip install matplotlib
 pip install seaborn
 
 
-# In[8]:
+# ### Import Library
+# Berikut adalah proses import library dan inisialisasi library sebelum digunakan.
+
+# In[3]:
 
 
 # inisialisasi semua library yg digunakan
@@ -227,26 +433,29 @@ style.use('fivethirtyeight')
 sns.set(style='whitegrid',color_codes=True)
 
 
-# In[9]:
+# In[4]:
 
 
 # menggunakan library sklearn untuk membuat tfidf, disini baru import function-nya dulu
 from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
 
 
-# In[10]:
+# In[5]:
 
 
-from nltk.corpus import stopwords  #stopwords
+# from nltk.corpus import stopwords  #stopwords
 
 
-# In[31]:
+# In[6]:
 
 
-stop_words=set(nltk.corpus.stopwords.words('indonesian'))
+# stop_words=set(nltk.corpus.stopwords.words('indonesian'))
 
 
-# In[32]:
+# ### Load Dataset
+# Berikut adalah code untuk membaca data dari dataAfterPreprocessing.csv, karena yang digunakan hanya kolom abstrak, maka kolom id dan title dihapus.
+
+# In[7]:
 
 
 # membaca data
@@ -255,13 +464,17 @@ df=pd.read_csv('./dataAfterPreprocessing.csv')
 df.head()
 
 
-# In[33]:
+# Menghapus kolom id dan title
+
+# In[8]:
 
 
 # menghapus data index dan title karena tidak digunakan
 df.drop(['index'],axis=1,inplace=True)
 df.drop(['title'],axis=1,inplace=True)
 
+
+# Data abstract siap digunakan
 
 # In[34]:
 
@@ -270,20 +483,40 @@ df.drop(['title'],axis=1,inplace=True)
 df.head(10)
 
 
-# In[35]:
+# ### Extracting Feature dan Membuat Document Term-Matrix (DTM)
+# Nilai DTM menggunakan nilai TF-Idf.
+# Beberapa poin penting yang perlu diperhatikan:
+# 1. LSA pada umumnya diimplementasikan dengan menggunakan nilai TF-Idf dan tidak dengan Count Vectorizer.
+# 2. Nilai parameter max_feature bergantung pada daya komputasi.
+# 3. Nilai default untuk min_df dan max_df agar program dapat bekerja dengan baik.
+# 4. Bisa menggunakan nilai ngram_range yang berbeda.
+
+# In[12]:
 
 
 # menghitung tfidf
 vect =TfidfVectorizer(stop_words=stop_words,max_features=1000)
 vect_text=vect.fit_transform(df['abstract_cleaned'].values.astype('U'))
+type(vect)
 
 
-# In[40]:
+# Dapat dilihat pada hasilnya, kata yang sering muncul dan jarang muncul dalam abstrak yang ada dalam idf. Apabila hasil memiliki nilai yang kecil maka kata tersebut lebih umum digunakan dalam dokumen (abstrak PTA)
+
+# ### Document Term Matrix (DTM)
+# Setiap baris mewakili sebuah kata yang unik, sedangkan setiap kolom mewakili konteks dari mana kata-kata tersebut diambil. Konteks yang dimaksud bisa berupa kalimat, paragraf, atau seluruh bagian dari teks.
+# Berikut adalah term-document matrix:
+
+# ![Term Document Matrix](termDocumentMatrix.JPG)
+
+# In[19]:
 
 
-# menampilkan hasil perhitungan tfidf
 print(vect_text.shape)
-print(vect_text)
+# print(vect_text)
+type(vect_text)
+vect_text = vect_text.transpose()
+df = pd.DataFrame(vect_text.toarray())
+print(df.head(5))
 
 
 # Kita sekarang dapat melihat kata-kata yang paling sering dan langka di abstrak berdasarkan skor idf. Semakin kecil nilainya berarti kata tersebut lebih sering digunakan (umum) dalam abstrak.
@@ -301,6 +534,23 @@ print(dd['telapak'])
 
 
 # Dapat dilihat kata paling sering digunakan adalah "hasil" sementara kata paling jarang digunakan adalah "telapak"
+
+# ### Latent Semantic Analysis (LSA)
+# LSA pada dasarnya adalah dekomposisi dari nilai tunggal.
+# Singular Value Decomposition (SVD) akan menguraikan DTM menjadi tiga matriks: 
+# 
+# $A_{m n}=U_{m m} x S_{m n} x V_{n n}^{T}$
+# 
+# 
+# Matriks U = Pada matriks ini, baris mewakili vektor dokumen pada topik
+# Matriks V = Baris pada matriks ini mewakili vektor istilah yang dinyatakan pada topik
+# Matriks S = Matriks diagonal yang memiliki elemen-elemen diagonal sebagai nilai singular dari A
+# 
+# Pada setiap baris dari matriks U (matriks istilah dari dokumen) merupakan representasi vektor yang ada dalam dokumen yang sesuai. Panjang vektor ini ialah jumlah topik yang diinginkan. Representasi dari vektor untuk suku yang ada dalam data dapat ditemui dalam matriks V.
+# 
+# Jadi, SVD memberikan nilai vektor pada setiap dokumen dan juga istilah dalam data. Panjang dari setiap vektor adalah k. Vektor ini digunakan untuk menentukan kata dan dokumen serupa dalam metode kesamaan kosinus.
+# 
+# Dapat digunakan fungsi truncastedSVD untuk mengimplementasikan LSA. Parameter n_components merupakan jumlah topik yang akan diekstrak. Model tersebut nantinya akan di fit dan ditransformasikan pada hasil yang diberikan oleh vectorizer.
 
 # In[43]:
 
@@ -333,6 +583,9 @@ for i,topic in enumerate(l):
 print(lsa_model.components_.shape) # (no_of_topics*no_of_words)
 print(lsa_model.components_)
 
+
+# ### Hasil
+# Berikut adalah 10 kata penting dalam setiap topik
 
 # In[30]:
 
